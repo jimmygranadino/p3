@@ -8,8 +8,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 
 export default function Calendar(props) {
     let user = props.user
-    let zipcode = user.zipcode
-    if (!zipcode) {zipcode = 98101}
+
     // test array of objects to mimic API response
     const testEvents = [{
         "url": "http://sandiego.eventful.com/events/lgbt-book-club-/E0-001-134699507-9?utm_source=apis&utm_medium=apim&utm_campaign=apic",
@@ -19,7 +18,10 @@ export default function Calendar(props) {
     // backup axios call in case things get hosed
     // if user is logged in, uses props.user.zipcode
     // else uses default zipcode
-    let backupCall = `https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=${process.env.REACT_APP_EVENTFUL_KEY}&keywords=concerts&location=${zipcode}&date=Future`
+    let backupCall = user ? 
+    `https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=${process.env.REACT_APP_EVENTFUL_KEY}&location=${user.zipcode}&date=Future`
+    :
+    `https://cors-anywhere.herokuapp.com/http://api.eventful.com/json/events/search?app_key=${process.env.REACT_APP_EVENTFUL_KEY}&location=Seattle&date=Future`
 
     //calls API on page render
     useEffect(() => {

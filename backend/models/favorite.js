@@ -19,10 +19,9 @@ const FavoriteSchema = new Schema({
     description: {
         type: String,
     },
-    // userId: [{
-    //     type: mongoose.Types.ObjectId,
-    //     ref: 'User'
-    // }],
+    email: [{
+        type: String,
+    }],
     // comments: [{
     //     commentBy: mongoose.Types.ObjectId,
     //     ref: 'User',

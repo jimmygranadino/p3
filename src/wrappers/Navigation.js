@@ -17,9 +17,6 @@ const Navigation = (props) => {
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/calendar">Calendar</NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/eventstemplate">Events Template</NavLink>
-                    </li>
                 </ul>
                 {
                     props.isAuthenticated ?

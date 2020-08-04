@@ -27,7 +27,7 @@ export default function Favorites(props) {
 
     //updates state when delete button is pressed EventsTemplate.js
     const handleDelete = () => {
-        axios.get(`${process.env.REACT_APP_SERVER_URL}v1/favorites/`, {
+        axios.get(`${process.env.REACT_APP_SERVER_URL}v1/favorites/`, { email: `${props.user.email}`,
         headers: {"accept":"application/json",
         'content-type':'application/json'
         }
@@ -47,7 +47,6 @@ export default function Favorites(props) {
                     <div id="events-display-container">
                         {/* {favorites} */}
                         <FavoritesDisplay favorites={favorites} handleDelete={handleDelete}/>
-                        {JSON.stringify(props.user)}
                     </div>
                 </div>
                 <div class="col-6">

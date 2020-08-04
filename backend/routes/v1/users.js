@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken')
 // const fetch = require('fetch')
 const axios = require('axios')
 const passport = require('passport')
+const app = express()
 
 //load User model from file location
 const db = require('../../models')

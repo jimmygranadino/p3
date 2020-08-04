@@ -52,15 +52,15 @@ app.use('/v1/users', users)
 require('./config/passport')(passport)
 
 
-const uri = process.env.MONGOD_URI
-console.log(process.env.MONGOD_URI)
-const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+// const uri = process.env.MONGOD_URI
+// console.log(process.env.MONGOD_URI)
+// const MongoClient = require('mongodb').MongoClient;
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
 
 
 // app.use(function(req, res, next) {
@@ -73,7 +73,7 @@ client.connect(err => {
 // routes
 
 // connect mongoose THIS WILL CONNECT TO uri IN DEPLOYMENT
-mongoose.connect(uri)
+mongoose.connect(mdb)
     .then(() => { console.log('MongoDB Connected... (^///^)') })
     .catch(err => console.log(err))
 

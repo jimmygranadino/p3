@@ -7,7 +7,6 @@ const db = require('../../models')
 
 app.use(cors())
 
-
 ////////////// ROUTES
 
 //Get Favorites
@@ -135,9 +134,13 @@ router.get('/idOnly', (req, res, next) => {
     })
 })
 
+// { $push: { userEmail: req.body.email } }
+
 router.post('/testpost', function (req,res, next) {
-        console.log(JSON.stringify(req.body) + 'PINGGGGGGGGG')
-        db.Favorite.findOne({eventId:req.body.eventId})
+        db.Favorite.findOneAndUpdate({
+            email: req.body.email
+        }, 
+        { $push: { email: req.body.email } })
         .then(favorite => {
             if (favorite) {
                 return res.send('error, event already favorited')
@@ -175,7 +178,7 @@ router.post('/add', function (req, res) {
             db.User.findOneAndUpdate({
                 email: req.body.email
             },
-                { $push: { favorite: favorite } }
+                { $push: { userEmail: favorite } }
             ).then(function (event) {
                 console.log(event)
                 res.send(event)
